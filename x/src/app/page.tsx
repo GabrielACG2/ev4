@@ -9,6 +9,7 @@ import { Quienes_somos } from "./Componentes/Quienes_somos";
 import { Productos } from "./Componentes/Productos";
 import { Ubicacion } from "./Componentes/Ubicacion";
 import { Redes_sociales } from "./Componentes/Redes_sociales";
+import { Actualizar } from "./Componentes/Actualizar";
 import React from "react";
 export default function Home() {
   return (

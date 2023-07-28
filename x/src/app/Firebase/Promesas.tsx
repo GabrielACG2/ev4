@@ -9,6 +9,7 @@ export const obtenerPersonas =async ()=>{
     var listado:persona[] =[];
     const querySnapshot = await getDocs(collection(db, "personas"));
     querySnapshot.forEach((doc) => {
+        console.log(doc.data())
     // doc.data() is never undefined for query doc snapshots
     var p:persona = {
         idPersona:doc.id,
@@ -20,13 +21,11 @@ export const obtenerPersonas =async ()=>{
         productos:doc.data().productos,
         cantidad:doc.data().cantidad,
         direccion:doc.data().direccion,
-        ciudad:doc.data().ciudad
-
-
-
-
-
+        ciudad:doc.data().ciudad,
+        talla:doc.data().talla,
+        telefono:doc.data().telefono,
     }
+   // console.log(p)
     listado.push(p)
     console.log(doc.id, " => ", doc.data());
     });
@@ -34,7 +33,7 @@ export const obtenerPersonas =async ()=>{
 }
 
 export const obtenerPersona = async (idPersona:string)=>{
-    const docRef = doc(db, "personas", "idPersona");
+    const docRef = doc(db, "personas", idPersona);
     const docSnap = await getDoc(docRef);
 
 if (docSnap.exists()) {
@@ -48,7 +47,9 @@ if (docSnap.exists()) {
         productos:docSnap.data().productos,
         cantidad:docSnap.data().cantidad,
         direccion:docSnap.data().direccion,
-        ciudad:docSnap.data().ciudad
+        ciudad:docSnap.data().ciudad,
+        talla:docSnap.data().talla,
+        telefono:docSnap.data().telefono
 
 
     }
@@ -60,11 +61,11 @@ if (docSnap.exists()) {
 }
 }
 export const actualizarPersona =  async(idPersona:string,p:persona)=>{
-    const docRef = doc(db, "personas", "idPersona");
+    const docRef = doc(db, "personas", idPersona);
 
 // Set the "capital" field of the city 'DC'
-await updateDoc(docRef, {...p});
+    await updateDoc(docRef, {...p});
 }
 export const eliminarPersona= async(idPersona:string)=>{
-    await deleteDoc(doc(db, "personas", "idPersona"));
+    await deleteDoc(doc(db, "personas", idPersona));
 }

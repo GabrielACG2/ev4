@@ -1,0 +1,13 @@
+.ubicacion{
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-top: 20px;
+
+}
+
+.h{
+    text-align: center;
+}

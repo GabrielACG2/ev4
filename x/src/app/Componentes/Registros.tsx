@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { obtenerPersonas } from '../Firebase/Promesas'
 import { persona } from '../../../Interfaces'
 import { Link } from 'react-router-dom'
+import '../Assets/tabla.css'
 
 
 
@@ -21,8 +22,10 @@ export const Registros = () => {
                 <td>{p.cantidad}</td>
                 <td>{p.direccion}</td>
                 <td>{p.ciudad}</td>
-                <td><Link to={"/actualizar/"+p.idPersona}>Actualizar</Link></td>
-                <td><Link to={"/eliminar/"+p.idPersona}>Eliminar</Link></td>
+                <td>{p.talla}</td>
+                <td>{p.telefono}</td>
+                <td><Link to={"/Actualizar/"+p.idPersona}>Actualizar</Link></td>
+                <td><Link to={"/Eliminar/"+p.idPersona}>Eliminar</Link></td>
             </tr>
         })
         return elementos
@@ -31,7 +34,7 @@ export const Registros = () => {
         //cargar datos firebase
         obtenerPersonas().then((listado)=>{
         console.log("cargando listado")
-        console.log(listado)
+        //console.log(listado)
         setPersonas(listado)
         })
     },[])
@@ -48,6 +51,8 @@ export const Registros = () => {
             <th>Cantidad</th>
             <th>Direccion</th>
             <th>Ciudad</th>
+            <th>talla</th>
+            <th>telefono</th>
         </tr>
         {
             renderizarDatos()
